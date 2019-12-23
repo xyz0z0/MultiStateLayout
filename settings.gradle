@@ -1,0 +1,2 @@
+include ':app', ':multistate'
+rootProject.name='MultiStateLayout'

@@ -1,0 +1,5 @@
+<resources>
+    <string name="error">Error</string>
+    <string name="retry">Click to retry</string>
+    <string name="empty">No data</string>
+</resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error">出错了</string>
+    <string name="retry">点击重试</string>
+    <string name="empty">没有数据</string>
+</resources>
