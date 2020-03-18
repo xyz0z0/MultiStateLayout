@@ -7,16 +7,18 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public class MultiStateLayout extends FrameLayout {
 
-    private View contentView;
     private LayoutInflater inflater;
+    private View currentShowingView;
+    private View contentView;
     private View progressView;
     private View errorView;
-    private View currentShowingView;
+    private View emptyView;
 
     public MultiStateLayout(@NonNull Context context) {
         super(context);
@@ -32,7 +34,8 @@ public class MultiStateLayout extends FrameLayout {
         inflater = LayoutInflater.from(context);
     }
 
-    @Override protected void onFinishInflate() {
+    @Override
+    protected void onFinishInflate() {
         super.onFinishInflate();
         if (getChildCount() != 1) {
             throw new EmptyContentException(MultiStateLayout.class);
@@ -79,5 +82,26 @@ public class MultiStateLayout extends FrameLayout {
         currentShowingView.setVisibility(INVISIBLE);
         errorView.setVisibility(VISIBLE);
         currentShowingView = errorView;
+    }
+
+    public void showEmpty(String tip, OnClickListener listener) {
+        if (emptyView == null) {
+            emptyView = inflater.inflate(R.layout.view_empty, this, false);
+            View emptyContentView = emptyView.findViewById(R.id.empty_content);
+            TextView emptyTextView = emptyView.findViewById(R.id.tv_empty);
+            addView(emptyView);
+        }
+        if (tip != null && tip.length() > 0) {
+            TextView emptyTextView = emptyView.findViewById(R.id.tv_empty);
+            emptyTextView.setText(tip);
+        }
+        if (listener != null) {
+            emptyView.findViewById(R.id.tv_retry).setOnClickListener(listener);
+        } else {
+            emptyView.findViewById(R.id.tv_retry).setVisibility(INVISIBLE);
+        }
+        currentShowingView.setVisibility(INVISIBLE);
+        emptyView.setVisibility(VISIBLE);
+        currentShowingView = emptyView;
     }
 }
