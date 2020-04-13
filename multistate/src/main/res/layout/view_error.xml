@@ -5,13 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="?attr/selectableItemBackground"
-    android:clickable="true"
+
     android:gravity="center"
     android:orientation="vertical">
 
+    <ImageView
+        android:id="@+id/iv_error"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:src="@drawable/ic_error_18dp" />
+
     <TextView
-        android:id="@+id/errorTextView"
+        android:id="@+id/tv_error"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
@@ -24,10 +29,12 @@
         android:textSize="16sp" />
 
     <TextView
+        android:id="@+id/tv_error_retry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
         android:padding="5dp"
         android:text="@string/retry"
         android:textColor="#727272"
-        android:textSize="10sp" />
+        android:textSize="14sp" />
 </LinearLayout>

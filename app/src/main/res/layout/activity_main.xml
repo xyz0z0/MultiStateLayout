@@ -10,7 +10,7 @@
         android:id="@+id/btn_show_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Show Content"
+        android:text="Content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -18,9 +18,33 @@
         android:id="@+id/btn_show_empty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Show Empty"
+        android:text="Empty"
         app:layout_constraintBottom_toBottomOf="@id/btn_show_content"
         app:layout_constraintLeft_toRightOf="@id/btn_show_content" />
+
+    <Button
+        android:id="@+id/btn_show_empty_retry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Empty Retry"
+        app:layout_constraintBottom_toBottomOf="@id/btn_show_content"
+        app:layout_constraintLeft_toRightOf="@id/btn_show_empty" />
+
+    <Button
+        android:id="@+id/btn_show_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Error"
+        app:layout_constraintBottom_toBottomOf="@id/btn_show_content"
+        app:layout_constraintLeft_toRightOf="@id/btn_show_empty_retry" />
+
+    <Button
+        android:id="@+id/btn_show_error_retry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Error Retry"
+        app:layout_constraintBottom_toBottomOf="@id/btn_show_content"
+        app:layout_constraintLeft_toRightOf="@id/btn_show_error" />
 
     <xyz.xyz0z0.multistate.MultiStateLayout
         android:id="@+id/msl_main"
