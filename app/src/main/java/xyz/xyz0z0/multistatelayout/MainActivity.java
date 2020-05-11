@@ -38,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
         btnShowContent.setOnClickListener(v -> {
             mslMain.showContent();
         });
-        btnShowError.setOnClickListener(v -> mslMain.showError());
+        btnShowError.setOnClickListener(v ->
+            mslMain.showError("获取数据错误，请退出重试"));
         btnShowErrorRetry.setOnClickListener(v -> mslMain
             .showError(R.drawable.ic_launcher_foreground, getString(R.string.error), "点击重试", new View.OnClickListener() {
                 @Override public void onClick(View view) {
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }));
         btnShowEmpty.setOnClickListener(v -> {
-            mslMain.showEmpty();
+            mslMain.showEmpty("Empty Empty");
         });
         btnShowEmptyRetry.setOnClickListener(v -> {
             mslMain.showEmpty(R.drawable.ic_launcher_foreground, getString(R.string.empty), "点击重试", new View.OnClickListener() {

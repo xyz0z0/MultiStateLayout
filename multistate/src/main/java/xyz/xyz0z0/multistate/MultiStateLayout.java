@@ -94,6 +94,11 @@ public class MultiStateLayout extends FrameLayout {
     }
 
 
+    public void showError(String errorTip) {
+        showError(builder.errorImageId, errorTip, null, null);
+    }
+
+
     public void showError(@DrawableRes int resId, String error, String retry, OnClickListener listener) {
         if (errorView == null) {
             errorView = inflater.inflate(R.layout.view_error, this, false);
@@ -131,6 +136,11 @@ public class MultiStateLayout extends FrameLayout {
 
     public void showEmpty() {
         showError(builder.emptyImageId, getContext().getString(R.string.empty), null, null);
+    }
+
+
+    public void showEmpty(String emptyTip) {
+        showError(builder.emptyImageId, emptyTip, null, null);
     }
 
 
