@@ -22,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        MultiStateLayout.getBuilder().setEmptyImageId(R.drawable.ic_wrong_18dp);
+
         btnLoading = findViewById(R.id.btnLoading);
         btnShowContent = findViewById(R.id.btn_show_content);
         btnShowEmpty = findViewById(R.id.btn_show_empty);

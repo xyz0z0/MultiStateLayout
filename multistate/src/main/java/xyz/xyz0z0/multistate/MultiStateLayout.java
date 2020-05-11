@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 public class MultiStateLayout extends FrameLayout {
 
     public static final int ID_NULL = 0;
+    private static Builder builder = new Builder();
     private LayoutInflater inflater;
     private View currentShowingView;
     private View contentView;
@@ -32,6 +33,11 @@ public class MultiStateLayout extends FrameLayout {
     public MultiStateLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         initView(context);
+    }
+
+
+    public static Builder getBuilder() {
+        return builder;
     }
 
 
@@ -84,7 +90,7 @@ public class MultiStateLayout extends FrameLayout {
 
 
     public void showError() {
-        showError(R.drawable.ic_wrong_18dp, getContext().getString(R.string.error), null, null);
+        showError(builder.errorImageId, getContext().getString(R.string.error), null, null);
     }
 
 
@@ -124,7 +130,7 @@ public class MultiStateLayout extends FrameLayout {
 
 
     public void showEmpty() {
-        showError(R.drawable.ic_information_18dp, getContext().getString(R.string.empty), null, null);
+        showError(builder.emptyImageId, getContext().getString(R.string.empty), null, null);
     }
 
 
@@ -160,5 +166,23 @@ public class MultiStateLayout extends FrameLayout {
         currentShowingView.setVisibility(INVISIBLE);
         emptyView.setVisibility(VISIBLE);
         currentShowingView = emptyView;
+    }
+
+
+    public static class Builder {
+        int errorImageId = R.drawable.ic_wrong_18dp;
+        int emptyImageId = R.drawable.ic_information_18dp;
+
+
+        public Builder setErrorImageId(@DrawableRes int resId) {
+            this.errorImageId = resId;
+            return builder;
+        }
+
+
+        public Builder setEmptyImageId(@DrawableRes int resId) {
+            this.emptyImageId = resId;
+            return builder;
+        }
     }
 }
