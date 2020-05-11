@@ -22,19 +22,23 @@ public class MultiStateLayout extends FrameLayout {
     private View errorView;
     private View emptyView;
 
+
     public MultiStateLayout(@NonNull Context context) {
         super(context);
         initView(context);
     }
+
 
     public MultiStateLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         initView(context);
     }
 
+
     private void initView(@NonNull Context context) {
         inflater = LayoutInflater.from(context);
     }
+
 
     @Override
     protected void onFinishInflate() {
@@ -46,6 +50,7 @@ public class MultiStateLayout extends FrameLayout {
         currentShowingView = contentView;
     }
 
+
     public void showContent() {
         if (currentShowingView == contentView) {
             return;
@@ -55,9 +60,11 @@ public class MultiStateLayout extends FrameLayout {
         currentShowingView = contentView;
     }
 
+
     public void showLoading() {
         showLoading(null);
     }
+
 
     public void showLoading(String loadingTip) {
         if (progressView == null) {
@@ -75,9 +82,11 @@ public class MultiStateLayout extends FrameLayout {
         currentShowingView = progressView;
     }
 
+
     public void showError() {
-        showError(R.drawable.ic_error_18dp, getContext().getString(R.string.error), null, null);
+        showError(R.drawable.ic_wrong_18dp, getContext().getString(R.string.error), null, null);
     }
+
 
     public void showError(@DrawableRes int resId, String error, String retry, OnClickListener listener) {
         if (errorView == null) {
@@ -113,9 +122,11 @@ public class MultiStateLayout extends FrameLayout {
         currentShowingView = errorView;
     }
 
+
     public void showEmpty() {
-        showError(R.drawable.ic_empty_18dp, getContext().getString(R.string.empty), null, null);
+        showError(R.drawable.ic_information_18dp, getContext().getString(R.string.empty), null, null);
     }
+
 
     public void showEmpty(@DrawableRes int resId, String empty, String retry, OnClickListener listener) {
         if (emptyView == null) {

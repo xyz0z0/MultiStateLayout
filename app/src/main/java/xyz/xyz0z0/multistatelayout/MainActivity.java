@@ -15,17 +15,23 @@ public class MainActivity extends AppCompatActivity {
     private Button btnShowEmptyRetry;
     private Button btnShowError;
     private Button btnShowErrorRetry;
+    private Button btnLoading;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        btnLoading = findViewById(R.id.btnLoading);
         btnShowContent = findViewById(R.id.btn_show_content);
         btnShowEmpty = findViewById(R.id.btn_show_empty);
         btnShowEmptyRetry = findViewById(R.id.btn_show_empty_retry);
         btnShowError = findViewById(R.id.btn_show_error);
         btnShowErrorRetry = findViewById(R.id.btn_show_error_retry);
-        mslMain = findViewById(R.id.msl_main);
+        mslMain = findViewById(R.id.mslMain);
+        btnLoading.setOnClickListener(v -> {
+            mslMain.showLoading();
+        });
         btnShowContent.setOnClickListener(v -> {
             mslMain.showContent();
         });

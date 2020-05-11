@@ -12,7 +12,7 @@
         android:id="@+id/iv_empty"
         android:layout_width="36dp"
         android:layout_height="36dp"
-        android:src="@drawable/ic_empty_18dp" />
+        android:src="@drawable/ic_information_18dp" />
 
     <TextView
         android:id="@+id/tv_empty"
