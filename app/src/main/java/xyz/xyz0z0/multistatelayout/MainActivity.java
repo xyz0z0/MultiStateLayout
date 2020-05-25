@@ -47,7 +47,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }));
         btnShowEmpty.setOnClickListener(v -> {
-            mslMain.showEmpty("Empty Empty");
+            Toast.makeText(this,"测试",Toast.LENGTH_LONG).show();
+            mslMain.showEmpty("Empty Empty","重试啊");
         });
         btnShowEmptyRetry.setOnClickListener(v -> {
             mslMain.showEmpty(R.drawable.ic_launcher_foreground, getString(R.string.empty), "点击重试", new View.OnClickListener() {

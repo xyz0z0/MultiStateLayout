@@ -66,9 +66,10 @@
     </HorizontalScrollView>
 
     <xyz.xyz0z0.multistate.MultiStateLayout
+        android:background="@color/colorPrimary"
         android:id="@+id/mslMain"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/scvMain">
 

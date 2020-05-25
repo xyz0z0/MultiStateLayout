@@ -95,7 +95,7 @@ public class MultiStateLayout extends FrameLayout {
 
 
     public void showError(String errorTip) {
-        showError(builder.errorImageId, errorTip, null, null);
+        showError(ID_NULL, errorTip, null, null);
     }
 
 
@@ -140,9 +140,12 @@ public class MultiStateLayout extends FrameLayout {
 
 
     public void showEmpty(String emptyTip) {
-        showError(builder.emptyImageId, emptyTip, null, null);
+        showError(ID_NULL, emptyTip, null, null);
     }
 
+    public void showEmpty(String emptyTip,String retryTip) {
+        showError(ID_NULL, emptyTip, retryTip, null);
+    }
 
     public void showEmpty(@DrawableRes int resId, String empty, String retry, OnClickListener listener) {
         if (emptyView == null) {
