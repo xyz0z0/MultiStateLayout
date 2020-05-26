@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         btnShowError = findViewById(R.id.btn_show_error);
         btnShowErrorRetry = findViewById(R.id.btn_show_error_retry);
         mslMain = findViewById(R.id.mslMain);
+        mslMain.showLoading("test");
         btnLoading.setOnClickListener(v -> {
             mslMain.showLoading();
         });

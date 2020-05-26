@@ -80,7 +80,7 @@ public class MultiStateLayout extends FrameLayout {
             addView(progressView);
         }
         if (loadingTip != null && loadingTip.length() > 0) {
-            TextView tvLoading = emptyView.findViewById(R.id.tv_loading);
+            TextView tvLoading = progressView.findViewById(R.id.tv_loading);
             tvLoading.setText(loadingTip);
         }
         currentShowingView.setVisibility(INVISIBLE);
