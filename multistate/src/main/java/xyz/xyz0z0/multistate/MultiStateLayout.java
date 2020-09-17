@@ -119,7 +119,7 @@ public class MultiStateLayout extends FrameLayout {
             tvRetryTip.setVisibility(GONE);
         }
         if (listener != null) {
-            tvRetryTip.setOnClickListener(listener);
+            tipView.setOnClickListener(listener);
         }
         currentShowingView.setVisibility(INVISIBLE);
         tipView.setVisibility(VISIBLE);
