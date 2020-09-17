@@ -1,50 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <HorizontalScrollView
         android:id="@+id/scvMain"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/mslMain"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
             <Button
                 android:id="@+id/btnLoading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Loading"  />
+                android:text="Loading" />
 
             <Button
                 android:id="@+id/btn_show_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Content"  />
-
-            <Button
-                android:id="@+id/btn_show_empty"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Empty"
-                app:layout_constraintBottom_toBottomOf="@id/btn_show_content"
-                app:layout_constraintLeft_toRightOf="@id/btn_show_content" />
-
-            <Button
-                android:id="@+id/btn_show_empty_retry"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Empty Retry"
-                app:layout_constraintBottom_toBottomOf="@id/btn_show_content"
-                app:layout_constraintLeft_toRightOf="@id/btn_show_empty" />
+                android:text="Content" />
 
             <Button
                 android:id="@+id/btn_show_error"
@@ -52,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:text="Error"
                 app:layout_constraintBottom_toBottomOf="@id/btn_show_content"
-                app:layout_constraintLeft_toRightOf="@id/btn_show_empty_retry" />
+                app:layout_constraintLeft_toRightOf="@id/btn_show_content" />
 
             <Button
                 android:id="@+id/btn_show_error_retry"
@@ -65,19 +48,22 @@
         </LinearLayout>
     </HorizontalScrollView>
 
-    <xyz.xyz0z0.multistate.MultiStateLayout
-        android:background="@color/colorPrimary"
-        android:id="@+id/mslMain"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/scvMain">
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <TextView
+        <xyz.xyz0z0.multistate.MultiStateLayout
+            android:id="@+id/mslMain"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="This content" />
+            android:layout_height="match_parent">
 
-    </xyz.xyz0z0.multistate.MultiStateLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="This content" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </xyz.xyz0z0.multistate.MultiStateLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</LinearLayout>

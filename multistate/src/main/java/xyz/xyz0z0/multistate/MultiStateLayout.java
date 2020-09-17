@@ -15,13 +15,11 @@ import androidx.annotation.Nullable;
 public class MultiStateLayout extends FrameLayout {
 
     public static final int ID_NULL = 0;
-    private static Builder builder = new Builder();
     private LayoutInflater inflater;
     private View currentShowingView;
     private View contentView;
     private View progressView;
-    private View errorView;
-    private View emptyView;
+    private View tipView;
 
 
     public MultiStateLayout(@NonNull Context context) {
@@ -33,11 +31,6 @@ public class MultiStateLayout extends FrameLayout {
     public MultiStateLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         initView(context);
-    }
-
-
-    public static Builder getBuilder() {
-        return builder;
     }
 
 
@@ -74,7 +67,7 @@ public class MultiStateLayout extends FrameLayout {
 
     public void showLoading(String loadingTip) {
         if (progressView == null) {
-            progressView = inflater.inflate(R.layout.view_progress, this, false);
+            progressView = inflater.inflate(R.layout.multi_state_progress_view, this, false);
             ProgressBar progressBar = progressView.findViewById(R.id.progress_wheel);
             View progressContentView = progressView.findViewById(R.id.progress_content);
             addView(progressView);
@@ -89,113 +82,48 @@ public class MultiStateLayout extends FrameLayout {
     }
 
 
-    public void showError() {
-        showError(builder.errorImageId, getContext().getString(R.string.error), null, null);
+    public void showTip(String errorTip) {
+        showTip(ID_NULL, errorTip, null, null);
     }
 
 
-    public void showError(String errorTip) {
-        showError(ID_NULL, errorTip, null, null);
+    public void showTip(String text, String retry, OnClickListener listener) {
+        showTip(ID_NULL, text, retry, listener);
     }
 
 
-    public void showError(@DrawableRes int resId, String error, String retry, OnClickListener listener) {
-        if (errorView == null) {
-            errorView = inflater.inflate(R.layout.view_error, this, false);
-            addView(errorView);
+    public void showTip(@DrawableRes int resId, String text, String retry, OnClickListener listener) {
+        if (tipView == null) {
+            tipView = inflater.inflate(R.layout.multi_state_tip_view, this, false);
+            addView(tipView);
         }
-        ImageView ivError = errorView.findViewById(R.id.iv_error);
-        TextView tvError = errorView.findViewById(R.id.tv_error);
-        TextView tvErrorRetry = errorView.findViewById(R.id.tv_error_retry);
+        ImageView ivTip = tipView.findViewById(R.id.ivTip);
+        TextView tvTip = tipView.findViewById(R.id.tvTip);
+        TextView tvRetryTip = tipView.findViewById(R.id.tvRetryTip);
         if (resId != ID_NULL) {
-            ivError.setVisibility(VISIBLE);
-            ivError.setImageResource(resId);
+            ivTip.setVisibility(VISIBLE);
+            ivTip.setImageResource(resId);
         } else {
-            ivError.setVisibility(GONE);
+            ivTip.setVisibility(GONE);
         }
-        if (error != null) {
-            tvError.setVisibility(VISIBLE);
-            tvError.setText(error);
+        if (text != null) {
+            tvTip.setVisibility(VISIBLE);
+            tvTip.setText(text);
         } else {
-            tvError.setVisibility(GONE);
+            tvTip.setVisibility(GONE);
         }
         if (retry != null) {
-            tvErrorRetry.setVisibility(VISIBLE);
-            tvErrorRetry.setText(retry);
+            tvRetryTip.setVisibility(VISIBLE);
+            tvRetryTip.setText(retry);
         } else {
-            tvErrorRetry.setVisibility(GONE);
+            tvRetryTip.setVisibility(GONE);
         }
         if (listener != null) {
-            tvErrorRetry.setOnClickListener(listener);
+            tvRetryTip.setOnClickListener(listener);
         }
         currentShowingView.setVisibility(INVISIBLE);
-        errorView.setVisibility(VISIBLE);
-        currentShowingView = errorView;
+        tipView.setVisibility(VISIBLE);
+        currentShowingView = tipView;
     }
 
-
-    public void showEmpty() {
-        showError(builder.emptyImageId, getContext().getString(R.string.empty), null, null);
-    }
-
-
-    public void showEmpty(String emptyTip) {
-        showError(ID_NULL, emptyTip, null, null);
-    }
-
-    public void showEmpty(String emptyTip,String retryTip) {
-        showError(ID_NULL, emptyTip, retryTip, null);
-    }
-
-    public void showEmpty(@DrawableRes int resId, String empty, String retry, OnClickListener listener) {
-        if (emptyView == null) {
-            emptyView = inflater.inflate(R.layout.view_empty, this, false);
-            addView(emptyView);
-        }
-        ImageView ivEmpty = emptyView.findViewById(R.id.iv_empty);
-        TextView tvEmpty = emptyView.findViewById(R.id.tv_empty);
-        TextView tvEmptyRetry = emptyView.findViewById(R.id.tv_empty_retry);
-        if (resId != ID_NULL) {
-            ivEmpty.setVisibility(VISIBLE);
-            ivEmpty.setImageResource(resId);
-        } else {
-            ivEmpty.setVisibility(GONE);
-        }
-        if (empty != null) {
-            tvEmpty.setVisibility(VISIBLE);
-            tvEmpty.setText(empty);
-        } else {
-            tvEmpty.setVisibility(GONE);
-        }
-        if (retry != null) {
-            tvEmptyRetry.setVisibility(VISIBLE);
-            tvEmptyRetry.setText(retry);
-        } else {
-            tvEmptyRetry.setVisibility(GONE);
-        }
-        if (listener != null) {
-            tvEmptyRetry.setOnClickListener(listener);
-        }
-        currentShowingView.setVisibility(INVISIBLE);
-        emptyView.setVisibility(VISIBLE);
-        currentShowingView = emptyView;
-    }
-
-
-    public static class Builder {
-        int errorImageId = R.drawable.ic_wrong_18dp;
-        int emptyImageId = R.drawable.ic_information_18dp;
-
-
-        public Builder setErrorImageId(@DrawableRes int resId) {
-            this.errorImageId = resId;
-            return builder;
-        }
-
-
-        public Builder setEmptyImageId(@DrawableRes int resId) {
-            this.emptyImageId = resId;
-            return builder;
-        }
-    }
 }
